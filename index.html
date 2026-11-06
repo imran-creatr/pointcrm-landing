@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>PointCRM — управляйте автомойкой с телефона</title>
+  <meta name="description" content="Заказы, касса, зарплата мойщиков и база клиентов в одном приложении для iPhone и Android.">
+  <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Иконки -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="logo-grad" x1="0" y1="32" x2="32" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#1A4FC4"/><stop offset="1" stop-color="#3F8EF0"/></linearGradient>
+  </defs>
+  <symbol id="i-logo" viewBox="0 0 32 32">
+    <path d="M0 15.925C0 11.7014 1.67781 7.65084 4.66432 4.66432C7.65084 1.67781 11.7014 0 15.925 0C18.145 -0.0132716 20.3432 0.437758 22.3786 1.32414C24.4139 2.21052 26.2415 3.51267 27.744 5.14701C29.2464 6.78135 30.3906 8.71177 31.103 10.8144C31.8154 12.917 32.0803 15.1453 31.8807 17.3563C31.6812 19.5673 31.0215 21.7122 29.9441 23.6532C28.8667 25.5943 27.3954 27.2886 25.6246 28.6275C23.8538 29.9664 21.8226 30.9203 19.6614 31.4279C17.5002 31.9355 15.2567 31.9856 13.075 31.575L14.275 24.9C16.1195 25.2391 18.0238 25.0017 19.7285 24.2199C21.4333 23.4382 22.8558 22.1502 23.8024 20.5311C24.749 18.9121 25.1737 17.0407 25.0188 15.1717C24.8639 13.3027 24.1369 11.5267 22.9366 10.0857C21.7364 8.64457 20.1213 7.60831 18.3111 7.1179C16.5009 6.6275 14.5835 6.70678 12.82 7.34494C11.0565 7.98311 9.53239 9.14917 8.45522 10.6844C7.37805 12.2197 6.80009 14.0496 6.8 15.925V27.375C6.8 29.375 1.875 32 0 32V15.925Z" fill="url(#logo-grad)"/>
+    <circle cx="15.925" cy="15.925" r="3.9" fill="none" stroke="#3D8AF0" stroke-width="2.8"/>
+  </symbol>
+  <symbol id="i-apple" viewBox="0 0 27.2 27.2"><path d="M13.7723 7.81547C12.6979 7.81547 11.0353 6.59373 9.28427 6.6368C6.97227 6.6674 4.85293 7.97753 3.6618 10.0527C1.26253 14.2177 3.043 20.3694 5.38333 23.7547C6.5314 25.4025 7.88573 27.2567 9.68093 27.1989C11.4036 27.1252 12.0496 26.0803 14.1406 26.0803C16.2157 26.0803 16.8039 27.1989 18.6286 27.1547C20.4839 27.1252 21.6614 25.4773 22.7947 23.8136C24.1049 21.9005 24.6489 20.0453 24.6783 19.9433C24.6341 19.9285 21.0721 18.5595 21.029 14.4387C20.9995 10.9933 23.8397 9.34547 23.9723 9.2718C22.3527 6.90313 19.8662 6.63793 18.9969 6.579C16.7303 6.4022 14.8319 7.81547 13.7723 7.81547ZM17.6007 4.34067C18.5561 3.19373 19.1873 1.59007 19.0117 0C17.6437 0.0589333 15.9947 0.912333 15.0087 2.0604C14.1247 3.07587 13.3609 4.71013 13.566 6.2696C15.0824 6.38747 16.643 5.48987 17.5995 4.3418" fill="#000"/></symbol>
+  <symbol id="i-gplay" viewBox="0 0 26.112 27.2">
+    <path d="M3.9168 1.3056L14.9056 13.7088L3.9168 26.112C3.4816 25.8944 3.264 25.4592 3.264 24.9152V2.5024C3.264 1.9584 3.4816 1.5232 3.9168 1.3056Z" fill="#2196F3"/>
+    <path d="M3.9168 1.3056L14.9056 13.7088L18.3872 9.792L5.44 1.5232C4.896 1.1968 4.352 1.1968 3.9168 1.3056Z" fill="#34A853"/>
+    <path d="M18.3872 9.792L14.9056 13.7088L18.3872 17.6256L22.5216 15.232C23.7184 14.5792 23.7184 12.8384 22.5216 12.1856L18.3872 9.792Z" fill="#FBBC04"/>
+    <path d="M14.9056 13.7088L3.9168 26.112C4.352 26.3296 4.896 26.2208 5.44 25.8944L18.3872 17.6256L14.9056 13.7088Z" fill="#EA4335"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M13.3333 4L6 11.3333L2.66667 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 15 15"><path d="M11.25 3.75L3.75 11.25M3.75 3.75L11.25 11.25" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 16 16"><path d="M12 4L4 12M4 4L12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 16 16"><path d="M5.26667 13.3333C6.53905 13.986 8.00272 14.1628 9.39392 13.8319C10.7851 13.5009 12.0124 12.6839 12.8545 11.5281C13.6966 10.3724 14.0983 8.95381 13.9871 7.52811C13.8758 6.10241 13.2591 4.76331 12.2479 3.75213C11.2367 2.74094 9.89759 2.12417 8.47189 2.01294C7.04619 1.90172 5.62765 2.30336 4.47188 3.1455C3.31611 3.98763 2.49913 5.21487 2.16815 6.60608C1.83717 7.99728 2.01396 9.46095 2.66667 10.7333L1.33333 14.6667L5.26667 13.3333Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.5372 2.3705C11.1934 2.02666 10.7272 1.83344 10.241 1.83333H3.66667C3.18044 1.83333 2.71412 2.02649 2.3703 2.3703C2.02649 2.71412 1.83333 3.18044 1.83333 3.66667V10.241C1.83344 10.7272 2.02666 11.1934 2.3705 11.5372L10.3492 19.5158C10.7658 19.9298 11.3293 20.1622 11.9167 20.1622C12.504 20.1622 13.0675 19.9298 13.4842 19.5158L19.5158 13.4842C19.9298 13.0675 20.1622 12.504 20.1622 11.9167C20.1622 11.3293 19.9298 10.7658 19.5158 10.3492L11.5372 2.3705Z"/><circle cx="6.875" cy="6.875" r=".92" fill="currentColor"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.75" y="3.67" width="16.5" height="16.5" rx="1.83"/><path d="M14.67 1.83V5.5M7.33 1.83V5.5M2.75 9.17H19.25"/></symbol>
+  <symbol id="i-box" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.875 3.91417L15.125 8.635"/><path d="M19.25 7.33333C19.2497 7.01184 19.1648 6.69608 19.0039 6.41773C18.843 6.13939 18.6118 5.90825 18.3333 5.7475L11.9167 2.08083C11.638 1.91992 11.3218 1.83521 11 1.83521C10.6782 1.83521 10.362 1.91992 10.0833 2.08083L3.66667 5.7475C3.38824 5.90825 3.15698 6.13939 2.99609 6.41773C2.8352 6.69608 2.75033 7.01184 2.75 7.33333V14.6667C2.75033 14.9882 2.8352 15.3039 2.99609 15.5823C3.15698 15.8606 3.38824 16.0918 3.66667 16.2525L10.0833 19.9192C10.362 20.0801 10.6782 20.1648 11 20.1648C11.3218 20.1648 11.638 20.0801 11.9167 19.9192L18.3333 16.2525C18.6118 16.0918 18.843 15.8606 19.0039 15.5823C19.1648 15.3039 19.2497 14.9882 19.25 14.6667V7.33333Z"/><path d="M3.025 6.41667L11 11L18.975 6.41667M11 20.1667V11"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.3333 9.16667C18.3333 13.7436 13.2559 18.5102 11.5509 19.9824C11.3921 20.1019 11.1987 20.1664 11 20.1664C10.8013 20.1664 10.6079 20.1019 10.4491 19.9824C8.74408 18.5102 3.66667 13.7436 3.66667 9.16667C3.66667 7.22175 4.43928 5.35648 5.81455 3.98122C7.18982 2.60595 9.05508 1.83333 11 1.83333C12.9449 1.83333 14.8102 2.60595 16.1855 3.98122C17.5607 5.35648 18.3333 7.22175 18.3333 9.16667Z"/><circle cx="11" cy="9.17" r="2.75"/></symbol>
+  <symbol id="i-crown" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.83333 3.66667L4.58333 14.6667H17.4167L20.1667 3.66667L14.6667 10.0833L11 3.66667L7.33333 10.0833L1.83333 3.66667Z"/><path d="M4.58 18.33H17.42"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1.83" y="2.75" width="18.33" height="12.83" rx="1.83"/><path d="M7.33 19.25H14.67M11 15.58V19.25"/></symbol>
+  <symbol id="i-user" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="7.33" r="4.58"/><path d="M18.3333 19.25C18.3333 17.3051 17.5607 15.4398 16.1855 14.0646C14.8102 12.6893 12.9449 11.9167 11 11.9167C9.05508 11.9167 7.18982 12.6893 5.81455 14.0646C4.43928 15.4398 3.66667 17.3051 3.66667 19.25"/></symbol>
+</svg>
+
+<!-- Навигация -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#top" class="logo" aria-label="PointCRM">
+      <svg class="logo__mark"><use href="#i-logo"/></svg>
+      <span>PointCRM</span>
+    </a>
+    <nav class="nav__links" aria-label="Основное меню">
+      <a href="#features">Возможности</a>
+      <a href="#how">Как работает</a>
+      <a href="#pricing">Тарифы</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <div class="nav__actions">
+      <a href="#" class="btn btn--ghost">Войти</a>
+      <a href="#cta" class="btn btn--primary">Попробовать бесплатно</a>
+    </div>
+    <button class="nav__burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <nav>
+    <a href="#features">Возможности</a>
+    <a href="#how">Как работает</a>
+    <a href="#pricing">Тарифы</a>
+    <a href="#faq">Вопросы</a>
+  </nav>
+  <div class="mobile-menu__actions">
+    <a href="#" class="btn btn--ghost btn--lg">Войти</a>
+    <a href="#cta" class="btn btn--primary btn--lg">Попробовать бесплатно</a>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__media">
+      <div class="hero__bg"><img src="assets/hero-bg.jpg" alt="" fetchpriority="high"></div>
+      <div class="hero__overlay"></div>
+      <div class="hero__whiteout"></div>
+    </div>
+
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <h1 class="hero__title" data-split>Управляйте автомойкой<br> с телефона</h1>
+        <p class="hero__lead" data-hero-fade>Заказы, касса, зарплата мойщиков и база клиентов в&nbsp;одном приложении для iPhone и Android. Владелец видит выручку смены, даже когда его нет на&nbsp;мойке.</p>
+        <div class="stores" data-hero-fade>
+          <a href="#" class="store">
+            <svg class="store__icon"><use href="#i-apple"/></svg>
+            <span class="store__label"><small>Загрузите в</small><b>App Store</b></span>
+          </a>
+          <a href="#" class="store">
+            <svg class="store__icon"><use href="#i-gplay"/></svg>
+            <span class="store__label"><small>Доступно в</small><b>Google Play</b></span>
+          </a>
+        </div>
+        <ul class="hero__benefits" data-hero-fade>
+          <li><svg><use href="#i-check"/></svg>Бесплатно</li>
+          <li><svg><use href="#i-check"/></svg>Вход по коду в WhatsApp</li>
+          <li><svg><use href="#i-check"/></svg>Настройка за 10 минут</li>
+        </ul>
+      </div>
+
+      <div class="hero__phone-wrap">
+        <div class="phone hero-phone" id="hero-phone">
+          <div class="phone__screen scan">
+            <img class="scan__feed" src="assets/camera-feed.jpg" alt="">
+            <div class="scan__fade"></div>
+            <i class="scan__boot"></i>
+            <div class="phone__island"></div>
+            <span class="phone__time">9:41</span>
+            <span class="scan__close"><svg><use href="#i-close"/></svg></span>
+            <span class="scan__title">Сканирование номера</span>
+            <div class="scan__chip"><svg><use href="#i-check"/></svg>Номер распознан · 0,8 с</div>
+            <div class="scan__bracket">
+              <svg viewBox="0 0 270 84" fill="none"><path d="M2 24V10a8 8 0 0 1 8-8h14M246 2h14a8 8 0 0 1 8 8v14M268 60v14a8 8 0 0 1-8 8h-14M24 82H10a8 8 0 0 1-8-8V60" stroke="#3B82F6" stroke-width="4" stroke-linecap="round"/></svg>
+              <i class="scan__flash"></i>
+              <i class="scan__line"></i>
+            </div>
+            <div class="sheet">
+              <i class="sheet__handle"></i>
+              <div class="sheet__row">
+                <span class="plate"><small>KZ</small>482 KDM 02</span>
+                <span class="pill pill--green">Постоянный</span>
+              </div>
+              <p class="sheet__car">Toyota Camry · Седан · серый</p>
+              <div class="sheet__visit">
+                <div><b>7-й визит</b><small>В прошлый раз: Комплекс</small></div>
+                <strong>6 000 ₸</strong>
+              </div>
+              <span class="sheet__btn">Создать заказ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS (sticky) -->
+  <section class="how" id="how">
+    <div class="how__pin">
+      <div class="container how__inner">
+        <div class="how__left">
+          <header class="section-head">
+            <span class="eyebrow" data-reveal>5 шагов одного заказа</span>
+            <h2 class="h2 h2--md" data-split>От фото номера<br> до сообщения клиенту</h2>
+            <p class="lead" data-reveal>Администратор ничего не вписывает вручную.</p>
+          </header>
+          <ol class="steps" id="steps">
+            <li class="step is-active">
+              <div class="step__head"><span class="step__num">01</span><span class="step__title">Сфотографируйте номер</span></div>
+              <div class="step__body"><div><p>Камера распознаёт госномер и марку, подтягивает клиента и историю визитов.</p><i class="step__bar"><i></i></i></div></div>
+            </li>
+            <li class="step">
+              <div class="step__head"><span class="step__num">02</span><span class="step__title">Выберите услуги и мойщиков</span></div>
+              <div class="step__body"><div><p>Цены подставляются по типу кузова. Если мойщиков несколько, зарплата делится между ними автоматически.</p><i class="step__bar"><i></i></i></div></div>
+            </li>
+            <li class="step">
+              <div class="step__head"><span class="step__num">03</span><span class="step__title">Следите за статусом</span></div>
+              <div class="step__body"><div><p>Все машины на экране: в процессе, готовы, по записи. Время и прогресс по каждой.</p><i class="step__bar"><i></i></i></div></div>
+            </li>
+            <li class="step">
+              <div class="step__head"><span class="step__num">04</span><span class="step__title">Примите оплату</span></div>
+              <div class="step__body"><div><p>Наличные, карта, Kaspi или перевод — деньги сразу попадают в кассу смены.</p><i class="step__bar"><i></i></i></div></div>
+            </li>
+            <li class="step">
+              <div class="step__head"><span class="step__num">05</span><span class="step__title">Клиент получает «готово»</span></div>
+              <div class="step__body"><div><p>Одно нажатие — и клиенту уходит сообщение в WhatsApp.</p><i class="step__bar"><i></i></i></div></div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="stage" data-reveal="scale">
+          <div class="stage__cam">
+            <div class="phone stage__phone">
+              <div class="phone__screen stage__screens" id="screens">
+                <img class="l-scan" src="assets/screen-1.jpg" alt="Экран сканирования номера">
+                <!-- главный экран въезжает поверх камеры, как переход в iOS -->
+                <div class="app">
+                  <img class="l-home" src="assets/screen-3.png" alt="Главный экран: машины в работе">
+                  <i class="l-dim"></i>
+                  <img class="l-sheet l-add" src="assets/screen-2.png" alt="Шторка «Добавить в заказ»">
+                  <i class="l-check"><svg><use href="#i-check"/></svg></i>
+                  <img class="l-sheet l-pay" src="assets/screen-4.png" alt="Шторка «Принять оплату»">
+                  <div class="l-toast"><img src="assets/screen-5.png" alt="Уведомление WhatsApp клиенту"></div>
+                </div>
+                <i class="tap" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="container">
+      <header class="section-head section-head--wide">
+        <span class="eyebrow" data-reveal>8 модулей в одном аккаунте</span>
+        <h2 class="h2" data-split>Меньше таблиц.<br> Больше порядка в бизнесе.</h2>
+      </header>
+
+      <div class="feature-list">
+        <!-- 1 -->
+        <article class="feature feature--dark" style="--bg:#0e172b">
+          <div class="feature__text">
+            <h3 class="h3" data-split>Деньги любят<br> ясность.</h3>
+            <p>Каждая оплата попадает в кассу смены. При закрытии админ сверяет наличные и выгружает Z‑отчёт.</p>
+            <ul class="checks">
+              <li><i><svg><use href="#i-check"/></svg></i>Лёгкий или сменный режим</li>
+              <li><i><svg><use href="#i-check"/></svg></i>Сверка наличных при закрытии</li>
+              <li><i><svg><use href="#i-check"/></svg></i>Вторую смену не открыть, пока не закрыта первая</li>
+            </ul>
+          </div>
+          <div class="card shift" data-tilt="0">
+            <div class="shift__top">
+              <b>Смена · Айгерим</b>
+              <span class="pill pill--green pill--dot">Открыта в 08:02</span>
+            </div>
+            <div class="shift__total">
+              <small>Выручка смены</small>
+              <strong><span data-count="50100">50 100</span> ₸</strong>
+            </div>
+            <dl class="shift__rows">
+              <div><dt>Наличные</dt><dd>25 500 ₸</dd></div>
+              <div><dt>Kaspi / карта</dt><dd>16 800 ₸</dd></div>
+              <div><dt>Переводы</dt><dd>7 800 ₸</dd></div>
+            </dl>
+            <div class="shift__foot">
+              <span class="shift__ok">Наличные сверены</span>
+              <span class="btn btn--dark btn--sm">Закрыть смену</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="feature feature--reverse" style="--bg:#eeeafe">
+          <div class="feature__text">
+            <h3 class="h3" data-split>Каждый вклад<br> посчитан.</h3>
+            <p>Процент от услуги, оклад и штрафы. PointCRM считает сумму по каждому мойщику за смену.</p>
+            <ul class="checks">
+              <li><i><svg><use href="#i-check"/></svg></i>Процент, оклад или оба сразу</li>
+              <li><i><svg><use href="#i-check"/></svg></i>Штрафы и авансы</li>
+              <li><i><svg><use href="#i-check"/></svg></i>Делится, если на машине несколько мойщиков</li>
+            </ul>
+          </div>
+          <div class="card payroll" data-tilt="-2">
+            <b class="card__title">К выплате за смену</b>
+            <div class="payroll__item">
+              <div class="payroll__row">
+                <span class="avatar" style="--c:#f59e0b">А</span>
+                <span class="payroll__name"><b>Айгерим</b><small>5 машин</small></span>
+                <strong>8 025 ₸</strong>
+              </div>
+              <i class="meter"><i style="--w:100%"></i></i>
+            </div>
+            <div class="payroll__item">
+              <div class="payroll__row">
+                <span class="avatar" style="--c:#3b82f6">А</span>
+                <span class="payroll__name"><b>Асхат</b><small>4 машины</small></span>
+                <strong>6 930 ₸</strong>
+              </div>
+              <i class="meter"><i style="--w:82%"></i></i>
+            </div>
+            <div class="payroll__item">
+              <div class="payroll__row">
+                <span class="avatar" style="--c:#22c55e">М</span>
+                <span class="payroll__name"><b>Мадина</b><small>3 машины</small></span>
+                <strong>4 263 ₸</strong>
+              </div>
+              <i class="meter"><i style="--w:53%"></i></i>
+            </div>
+            <div class="payroll__total"><span>Итого к выплате</span><span><span data-count="19218">19 218</span> ₸</span></div>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="feature" style="--bg:#e9f3ff">
+          <div class="feature__text">
+            <h3 class="h3" data-split>Знакомый номер.<br> Вся история.</h3>
+            <p>Сфотографировали номер — открылась карточка клиента со всеми визитами и машинами.</p>
+            <ul class="checks">
+              <li><i><svg><use href="#i-check"/></svg></i>История визитов и сумма чеков</li>
+              <li><i><svg><use href="#i-check"/></svg></i>Несколько машин у одного клиента</li>
+              <li><i><svg><use href="#i-check"/></svg></i>Бонусы и акции</li>
+            </ul>
+          </div>
+          <div class="card client" data-tilt="2">
+            <div class="client__head">
+              <span class="avatar avatar--lg" style="--c:#15803d;--bg:#e8f7ee">А</span>
+              <span><b>Азамат Кабулов</b><small>+7 701 555 12 34</small></span>
+            </div>
+            <div class="stats">
+              <div><small>Визитов</small><b><span data-count="12">12</span></b></div>
+              <div><small>Сумма чеков</small><b><span data-count="29400">29 400</span> ₸</b></div>
+              <div><small>Последний</small><b>2 ноября</b></div>
+            </div>
+            <span class="client__label">Машины</span>
+            <div class="car-row"><span class="plate plate--sm"><small>KZ</small>484 BFO 02</span><span>Toyota Camry · седан</span></div>
+            <div class="car-row"><span class="plate plate--sm"><small>KZ</small>070 LMA 10</span><span>Lexus LX 570 · джип</span></div>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="feature feature--dark feature--reverse" style="--bg:#101b35">
+          <div class="feature__text">
+            <h3 class="h3" data-split>Вся смена.<br> Одним взглядом.</h3>
+            <p>Выручка по часам и способам оплаты. В журнале видно, кто из админов что изменил.</p>
+            <ul class="checks">
+              <li><i><svg><use href="#i-check"/></svg></i>Отчёт за день, неделю или месяц</li>
+              <li><i><svg><use href="#i-check"/></svg></i>Выгрузка отчёта</li>
+              <li><i><svg><use href="#i-check"/></svg></i>Журнал изменений по каждому админу</li>
+            </ul>
+          </div>
+          <div class="card report" data-tilt="0">
+            <div class="stats">
+              <div><small>Выручка</small><b><span data-count="50100">50 100</span> ₸</b></div>
+              <div><small>Машин</small><b><span data-count="12">12</span></b></div>
+              <div><small>Средний чек</small><b><span data-count="4175">4 175</span> ₸</b></div>
+            </div>
+            <div class="bars">
+              <i style="--h:18.75%"></i><i style="--h:27%"></i><i style="--h:31.25%"></i><i style="--h:45.8%"></i><i style="--h:54.2%"></i><i style="--h:41.7%"></i><i style="--h:72.9%"></i><i class="is-peak" style="--h:100%"></i><i style="--h:64.6%"></i><i style="--h:50%"></i><i style="--h:37.5%"></i><i style="--h:29.2%"></i><i style="--h:22.9%"></i>
+            </div>
+            <div class="report__axis"><span>08:00</span><b>Пик в 15:00 — 9 800 ₸</b><span>20:00</span></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="modules">
+        <h3 class="modules__title" data-reveal>Ещё в PointCRM</h3>
+        <div class="modules__grid">
+          <div class="tile"><i><svg><use href="#i-tag"/></svg></i><b>Прайс по типу кузова</b><p>Цена зависит от кузова</p></div>
+          <div class="tile"><i><svg><use href="#i-calendar"/></svg></i><b>Онлайн-запись</b><p>Клиенты сами выбирают время</p></div>
+          <div class="tile"><i><svg><use href="#i-box"/></svg></i><b>Склад</b><p>Остатки химии и продажа товаров</p></div>
+          <div class="tile"><i><svg><use href="#i-pin"/></svg></i><b>Филиалы</b><p>Несколько моек в одном аккаунте</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROLES -->
+  <section class="roles" id="pricing">
+    <div class="container">
+      <header class="section-head section-head--wide">
+        <h2 class="h2" data-split>Каждому — свой экран.<br> Владельцу — вся картина.</h2>
+        <p class="lead" data-reveal>Права настраиваются для каждого сотрудника.</p>
+      </header>
+      <div class="roles__grid">
+        <article class="role is-active">
+          <span class="role__num">01</span>
+          <i class="role__icon"><svg><use href="#i-crown"/></svg></i>
+          <div class="role__head"><b>Владелец</b><p>Следит за мойкой без звонков админу</p></div>
+          <hr>
+          <ul>
+            <li><svg><use href="#i-check"/></svg>Выручка в реальном времени</li>
+            <li><svg><use href="#i-check"/></svg>Журнал действий администратора</li>
+            <li><svg><use href="#i-check"/></svg>Зарплаты, расходы и филиалы</li>
+          </ul>
+        </article>
+        <article class="role">
+          <span class="role__num">02</span>
+          <i class="role__icon"><svg><use href="#i-monitor"/></svg></i>
+          <div class="role__head"><b>Администратор</b><p>Касса и заказы в одном окне</p></div>
+          <hr>
+          <ul>
+            <li><svg><use href="#i-check"/></svg>Заказ по фото госномера</li>
+            <li><svg><use href="#i-check"/></svg>Наличные, карта, Kaspi, перевод</li>
+            <li><svg><use href="#i-check"/></svg>Открытие и закрытие смены</li>
+          </ul>
+        </article>
+        <article class="role">
+          <span class="role__num">03</span>
+          <i class="role__icon"><svg><use href="#i-user"/></svg></i>
+          <div class="role__head"><b>Мойщик</b><p>Видит свои машины и заработок</p></div>
+          <hr>
+          <ul>
+            <li><svg><use href="#i-check"/></svg>Заказы на сегодня</li>
+            <li><svg><use href="#i-check"/></svg>Баланс и история выплат</li>
+            <li><svg><use href="#i-check"/></svg>Без доступа к кассе</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section class="compare">
+    <div class="container">
+      <header class="section-head section-head--wide">
+        <span class="eyebrow" data-reveal>Сравнение</span>
+        <h2 class="h2" data-split>Работайте с клиентами.<br> Учёт оставьте PointCRM.</h2>
+      </header>
+      <div class="compare__grid">
+        <div class="cmp cmp--old">
+          <div class="cmp__head">Тетрадь и Excel</div>
+          <ul>
+            <li><i><svg><use href="#i-x"/></svg></i>Касса сверяется вручную в конце дня</li>
+            <li><i><svg><use href="#i-x"/></svg></i>История заказов теряется в разных файлах</li>
+            <li><i><svg><use href="#i-x"/></svg></i>Остатки склада никто не считает вовремя</li>
+            <li><i><svg><use href="#i-x"/></svg></i>Зарплата мойщиков считается на бумаге</li>
+            <li><i><svg><use href="#i-x"/></svg></i>Цифры видны, только когда вы на мойке</li>
+          </ul>
+        </div>
+        <div class="cmp cmp--new">
+          <div class="cmp__head"><svg class="logo__mark"><use href="#i-logo"/></svg>PointCRM</div>
+          <ul>
+            <li><i><svg><use href="#i-check"/></svg></i>Касса сверяется после каждой оплаты</li>
+            <li><i><svg><use href="#i-check"/></svg></i>Каждый заказ сохранён: кто, что и за сколько</li>
+            <li><i><svg><use href="#i-check"/></svg></i>Приложение предупредит, что заканчивается</li>
+            <li><i><svg><use href="#i-check"/></svg></i>Зарплата считается по закрытым заказам</li>
+            <li><i><svg><use href="#i-check"/></svg></i>Выручка видна с телефона из любого места</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container faq__inner">
+      <div class="faq__left">
+        <h2 class="h2 h2--md" data-split>Частые<br> вопросы</h2>
+        <p class="lead" data-reveal>Не нашли ответ? Напишите нам.</p>
+        <a href="#" class="btn btn--dark" data-reveal><svg class="btn__icon"><use href="#i-whatsapp"/></svg>Написать в WhatsApp</a>
+      </div>
+      <div class="faq__list" id="faq-list">
+        <div class="qa is-open">
+          <button class="qa__q" aria-expanded="true">Нужно ли покупать оборудование?<i aria-hidden="true"></i></button>
+          <div class="qa__a"><p>Нет. PointCRM работает в браузере на компьютере и в приложении для iPhone и Android.</p></div>
+        </div>
+        <div class="qa">
+          <button class="qa__q" aria-expanded="false">Как распознаётся госномер?<i aria-hidden="true"></i></button>
+          <div class="qa__a"><p>Наведите камеру телефона на номер — приложение распознаёт госномер и марку машины меньше чем за секунду и сразу подтягивает карточку клиента.</p></div>
+        </div>
+        <div class="qa">
+          <button class="qa__q" aria-expanded="false">Можно ли перенести клиентов из Excel?<i aria-hidden="true"></i></button>
+          <div class="qa__a"><p>Да. Загрузите таблицу — мы перенесём клиентов, их машины и историю визитов.</p></div>
+        </div>
+        <div class="qa">
+          <button class="qa__q" aria-expanded="false">Как считается зарплата мойщиков?<i aria-hidden="true"></i></button>
+          <div class="qa__a"><p>Процент от услуги, оклад или оба сразу. Штрафы и авансы учитываются, а если на машине несколько мойщиков — сумма делится между ними.</p></div>
+        </div>
+        <div class="qa">
+          <button class="qa__q" aria-expanded="false">Сколько сотрудников можно добавить?<i aria-hidden="true"></i></button>
+          <div class="qa__a"><p>Без ограничений. Для каждого сотрудника настраиваются свои права доступа.</p></div>
+        </div>
+        <div class="qa">
+          <button class="qa__q" aria-expanded="false">Есть ли пробный период?<i aria-hidden="true"></i></button>
+          <div class="qa__a"><p>Да, начать можно бесплатно — вход по коду в WhatsApp, настройка занимает около 10 минут.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="cta">
+    <div class="container">
+      <div class="cta__block">
+        <div class="cta__text">
+          <h2 class="cta__title" data-split>Порядок<br> начинается<br> с PointCRM.</h2>
+          <p data-reveal>Сфотографируйте прайс, добавьте мойщиков и примите первую машину сегодня.</p>
+          <div class="stores stores--lg" data-reveal>
+            <a href="#" class="store store--white">
+              <svg class="store__icon"><use href="#i-apple"/></svg>
+              <span class="store__label"><small>Загрузите в</small><b>App Store</b></span>
+            </a>
+            <a href="#" class="store store--white">
+              <svg class="store__icon"><use href="#i-gplay"/></svg>
+              <span class="store__label"><small>Доступно в</small><b>Google Play</b></span>
+            </a>
+          </div>
+        </div>
+        <img class="cta__phone" src="assets/screen-cta.png" alt="Экран «Новая заявка» в приложении PointCRM" loading="lazy">
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="#top" class="logo"><svg class="logo__mark"><use href="#i-logo"/></svg><span>PointCRM</span></a>
+        <p>CRM для автомоек Казахстана</p>
+      </div>
+      <div class="footer__cols">
+        <div><b>Продукт</b><a href="#features">Возможности</a><a href="#pricing">Тарифы</a><a href="#">Онлайн-запись</a><a href="#">Обновления</a></div>
+        <div><b>Компания</b><a href="#">О нас</a><a href="#">Партнёрам</a><a href="#">Контакты</a></div>
+        <div><b>Помощь</b><a href="#">Обучение</a><a href="#">WhatsApp поддержка</a><a href="#">Публичная оферта</a><a href="#">Конфиденциальность</a></div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 PointCRM. Астана, Казахстан</span>
+      <span><a href="#">Русский</a> · <a href="#">Қазақша</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script src="textures.js"></script>
+<script src="phone3d.js"></script>
+</body>
+</html>
